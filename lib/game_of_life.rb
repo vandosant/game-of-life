@@ -1,21 +1,21 @@
 class GameOfLife
-  attr_reader :grid
+  attr_reader :cells
 
   def initialize(grid_size, starting_live_cells)
     @grid_size = grid_size
     @starting_live_cells = starting_live_cells
-    @grid = []
+    @cells = []
   end
 
-  def generate_grid
+  def generate_cells
     @starting_live_cells.times do
-      @grid << 1
+      @cells << 1
     end
 
     (@grid_size - @starting_live_cells).times do
-      @grid << 0
+      @cells << 0
     end
 
-    @grid.shuffle!
+    @cells.shuffle!
   end
 end

@@ -10,7 +10,7 @@ class App < Sinatra::Base
 
   post '/' do
     settings.game = GameOfLife.new(params['grid-size'].to_i, params['live-cells'].to_i)
-    settings.game.generate_grid
+    settings.game.generate_cells
     redirect '/'
   end
 end
