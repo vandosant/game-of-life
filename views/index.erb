@@ -8,4 +8,15 @@
   <input type="submit" value="New Game">
 </form>
 
-<%= game.cells %>
+<% grid.each_with_index do |coordinate, index| %>
+  <% if coordinate[1] > grid[index-1][1] %>
+    <br/>
+  <% end %>
+  <div class="cell">
+    <div class="v-align">
+      <div class="cell-content">
+        <%= game.cells[index] %>
+      </div>
+    </div>
+  </div>
+<% end %>

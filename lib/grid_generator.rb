@@ -1,5 +1,5 @@
 class GridGenerator
-  def self.map(items, items_per_row=nil)
+  def self.map(items, items_per_row=10)
     result = []
     x_count = 0
     y_count = 0
