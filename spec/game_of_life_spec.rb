@@ -20,4 +20,43 @@ describe GameOfLife do
     expect(game1.cells).to match_array game2.cells
     expect(game1.cells).to_not eq game2.cells
   end
+
+  it 'kills cells with fewer than two live horizontal neighbors' do
+    game = GameOfLife.new(4, 1)
+
+    game.generate_cells
+
+    game.advance
+
+    expect(game.cells).to eq [0,0,0,0]
+
+    game = GameOfLife.new(4, 2)
+
+    game.generate_cells
+
+    game.advance
+
+    expect(game.cells).to eq [0,0,0,0]
+  end
+
+  it 'does not kill cells with two live horizontal neighbors' do
+    game = GameOfLife.new(4, 4)
+
+    game.generate_cells
+
+    game.advance
+
+    expect(game.cells).to match_array [0,0,1,1]
+  end
+
+  it 'does not kill cells two live neighbors in any direction' do
+    # row height defaults to 10 cells
+    game = GameOfLife.new(20, 20)
+
+    game.generate_cells
+
+    game.advance
+
+    expect(game.cells).to eq [1]*20
+  end
 end
