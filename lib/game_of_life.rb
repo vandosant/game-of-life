@@ -52,7 +52,7 @@ class GameOfLife
           count += 1
         end
 
-        if count < 2
+        if count < 2 || count > 3
           dead_cell_indexes << index
         end
       end

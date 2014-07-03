@@ -59,4 +59,16 @@ describe GameOfLife do
 
     expect(game.cells).to eq [1]*20
   end
+
+  it 'kills cells with more than three neighbors' do
+    game = GameOfLife.new(30, 30)
+
+    game.generate_cells
+
+    game.advance
+
+    expected = ([1]*22) + ([0]*8)
+
+    expect(game.cells).to match_array expected
+  end
 end
