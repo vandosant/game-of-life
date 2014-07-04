@@ -71,4 +71,22 @@ describe GameOfLife do
 
     expect(game.cells).to match_array expected
   end
+
+  it 'creates a live cell in dead cells with three live neighbors' do
+    game = GameOfLife.new(30, 30)
+
+    game.generate_cells
+
+    game.advance
+
+    expected = ([1]*22) + ([0]*8)
+
+    expect(game.cells).to match_array expected
+
+    game.advance
+
+    expected = ([1]*24) + ([0]*6)
+
+    expect(game.cells).to match_array expected
+  end
 end

@@ -30,6 +30,7 @@ class GameOfLife
       grid = get_grid
       x_max = grid.map { |coordinate| coordinate[0] }.sort.last
       dead_cell_indexes = []
+      new_live_cell_indexes = []
 
       grid.each_with_index do |cell_coordinate, index|
         count = 0
@@ -54,11 +55,17 @@ class GameOfLife
 
         if count < 2 || count > 3
           dead_cell_indexes << index
+        elsif count == 3
+          new_live_cell_indexes << index
         end
       end
 
       dead_cell_indexes.each do |index|
         @cells[index] = 0
+      end
+
+      new_live_cell_indexes.each do |index|
+        @cells[index] = 1
       end
     end
   end
