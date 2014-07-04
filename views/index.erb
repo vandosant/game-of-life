@@ -13,7 +13,7 @@
     <% if coordinate[1] > grid[index-1][1] %>
       <br/>
     <% end %>
-    <div class="cell">
+    <div class="cell cell-<%= game.cells[index] %>">
       <div class="v-align">
         <div class="cell-content">
           <%= game.cells[index] %>
