@@ -1,5 +1,6 @@
 body {
     width: 100%;
+    color: #293B47;
 }
 
 .content-container {
@@ -38,5 +39,18 @@ body {
 }
 
 .cell-1 {
-    background:#888;
+    background: #5F7A87;
+}
+
+.cell-0 {
+    background: #CBFF48
+}
+
+form input {
+    border: 2px solid #00ADA9;
+}
+
+.submit-button {
+    background: white;
+    border: 2px solid #00ADA9;
 }
