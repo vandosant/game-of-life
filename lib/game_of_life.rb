@@ -37,11 +37,11 @@ class GameOfLife
         x_value = cell_coordinate[0]
         y_value = cell_coordinate[1]
 
-        if x_value != 0 && @cells[index-1] == 1
+        if left_neighbor_present?(x_value) && @cells[index-1] == 1
           count += 1
         end
 
-        if x_value != (x_max) && @cells[index+1] == 1
+        if right_neighbor_present?(x_value, x_max) && @cells[index+1] == 1
           count += 1
         end
 
@@ -74,5 +74,13 @@ class GameOfLife
 
   def get_grid
     GridGenerator.map(@cells)
+  end
+
+  def left_neighbor_present?(x_coordinate)
+    x_coordinate != 0
+  end
+
+  def right_neighbor_present?(x_coordinate, x_max)
+    x_coordinate != x_max
   end
 end
