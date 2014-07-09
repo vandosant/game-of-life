@@ -34,29 +34,29 @@ class GameOfLife
       new_live_cell_indexes = []
 
       grid.each_with_index do |cell_coordinate, index|
-        count = 0
+        live_neighbor_count = 0
         x_value = cell_coordinate[0]
         y_value = cell_coordinate[1]
 
         if left_neighbor_present?(x_value) && @cells[index-1] == 1
-          count += 1
+          live_neighbor_count += 1
         end
 
         if right_neighbor_present?(x_value, x_max) && @cells[index+1] == 1
-          count += 1
+          live_neighbor_count += 1
         end
 
         if bottom_neighbor_present?(y_value, y_max) && @cells[grid.index([x_value, (y_value + 1)])] == 1
-          count += 1
+          live_neighbor_count += 1
         end
 
         if top_neighbor_present?(y_value) && @cells[grid.index([x_value, (y_value - 1)])] == 1
-          count += 1
+          live_neighbor_count += 1
         end
 
-        if count < 2 || count > 3
+        if live_neighbor_count < 2 || live_neighbor_count > 3
           dead_cell_indexes << index
-        elsif count == 3
+        elsif live_neighbor_count == 3
           new_live_cell_indexes << index
         end
       end
