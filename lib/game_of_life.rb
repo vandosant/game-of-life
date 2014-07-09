@@ -29,6 +29,7 @@ class GameOfLife
     else
       grid = get_grid
       x_max = grid.map { |coordinate| coordinate[0] }.sort.last
+      y_max = grid.map { |coordinate| coordinate[1] }.sort.last
       dead_cell_indexes = []
       new_live_cell_indexes = []
 
@@ -45,11 +46,11 @@ class GameOfLife
           count += 1
         end
 
-        if grid.include?([0, y_value + 1]) && @cells[grid.index([x_value, (y_value + 1)])] == 1
+        if bottom_neighbor_present?(y_value, y_max) && @cells[grid.index([x_value, (y_value + 1)])] == 1
           count += 1
         end
 
-        if grid.include?([0, y_value - 1]) && @cells[grid.index([x_value, (y_value - 1)])] == 1
+        if top_neighbor_present?(y_value) && @cells[grid.index([x_value, (y_value - 1)])] == 1
           count += 1
         end
 
@@ -82,5 +83,13 @@ class GameOfLife
 
   def right_neighbor_present?(x_coordinate, x_max)
     x_coordinate != x_max
+  end
+
+  def top_neighbor_present?(y_coordinate)
+    y_coordinate != 0
+  end
+
+  def bottom_neighbor_present?(y_coordinate, y_max)
+    y_coordinate != y_max
   end
 end
