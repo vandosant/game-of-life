@@ -1,6 +1,7 @@
 body {
     width: 100%;
     color: #293B47;
+    font-size: .8em;
 }
 
 .content-container {
@@ -50,7 +51,8 @@ form input {
 }
 
 .submit-button {
-    background: white;
+    color: #CBFF48;
+    background: #5F7A87;
     border: 2px solid #00ADA9;
 }
 
