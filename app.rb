@@ -6,6 +6,8 @@ class App < Sinatra::Base
   set :game, GameOfLife.new(0, 0)
   set :grid, GridGenerator.map(settings.game.cells)
   set :error_message, nil
+  set :grid_size_error_message, 'Grid size must be divisible by ten'
+  set :live_cell_error_message, 'Live cells must be less than grid size'
 
   get '/' do
     if errors?
@@ -16,10 +18,10 @@ class App < Sinatra::Base
 
   post '/' do
     if grid_size_error?(params)
-      settings.error_message = 'Grid size must be divisible by ten'
+      settings.error_message = settings.grid_size_error_message
       erb :index, locals: {:game => settings.game, :grid => settings.grid, :error_message => settings.error_message}
     elsif live_cells_error?(params)
-      settings.error_message = 'Live cells must be less than grid size'
+      settings.error_message = settings.live_cell_error_message
       erb :index, locals: {:game => settings.game, :grid => settings.grid, :error_message => settings.error_message}
     elsif params['advance']
       settings.game.advance
