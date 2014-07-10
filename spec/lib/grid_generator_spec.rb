@@ -1,5 +1,5 @@
 require 'spec_helper'
-require_relative '../lib/grid_generator'
+require './lib/grid_generator'
 
 describe GridGenerator do
   it 'generates coordinates for an array' do

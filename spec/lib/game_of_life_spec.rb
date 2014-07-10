@@ -1,5 +1,5 @@
 require 'spec_helper'
-require_relative '../lib/game_of_life'
+require './lib/game_of_life'
 
 describe GameOfLife do
   it 'starts a new game' do
