@@ -5,13 +5,23 @@ require_relative 'lib/grid_generator'
 class App < Sinatra::Base
   set :game, GameOfLife.new(0, 0)
   set :grid, GridGenerator.map(settings.game.cells)
+  set :error_message, nil
 
   get '/' do
+    if errors?
+      settings.error_message = nil
+    end
     erb :index, locals: {:game => settings.game, :grid => settings.grid}
   end
 
   post '/' do
-    if params['advance']
+    if params['grid-size'].to_i % 10 != 0
+      settings.error_message = 'Grid size must be divisible by ten'
+      erb :index, locals: {:game => settings.game, :grid => settings.grid, :error_message => settings.error_message}
+    elsif params['live-cells'].to_i > params['grid-size'].to_i
+      settings.error_message = 'Live cells must be less than grid size'
+      erb :index, locals: {:game => settings.game, :grid => settings.grid, :error_message => settings.error_message}
+    elsif params['advance']
       settings.game.advance
       settings.grid = GridGenerator.map(settings.game.cells)
       redirect '/'
@@ -21,5 +31,11 @@ class App < Sinatra::Base
       settings.grid = GridGenerator.map(settings.game.cells)
       redirect '/'
     end
+  end
+
+  private
+
+  def errors?
+    settings.error_message != nil
   end
 end

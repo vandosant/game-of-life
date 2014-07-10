@@ -50,7 +50,7 @@ describe GameOfLife do
   end
 
   it 'does not kill cells two live neighbors in any direction' do
-    # row height defaults to 10 cells
+    # row length defaults to 10 cells
     game = GameOfLife.new(20, 20)
 
     game.generate_cells
