@@ -3,28 +3,26 @@ require './lib/grid_generator'
 
 describe GridGenerator do
   it 'generates coordinates for an array' do
-    input = [1, 0]
+    input1 = [1, 0]
 
-    grid = GridGenerator.map(input)
+    grid1 = GridGenerator.map(input1, 1, 2)
 
     expected = [
       [0, 0],
       [1, 0]
     ]
 
-    expect(grid).to eq expected
-  end
+    expect(grid1).to eq expected
 
-  it 'generates rows based on parameters' do
-    input = [1, 0]
+    input2 = [1, 0]
 
-    grid = GridGenerator.map(input, 1)
+    grid2 = GridGenerator.map(input2, 2, 1)
 
     expected = [
       [0, 0],
       [0, 1]
     ]
 
-    expect(grid).to eq expected
+    expect(grid2).to eq expected
   end
 end

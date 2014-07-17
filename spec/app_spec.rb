@@ -1,47 +1,51 @@
 require 'spec_helper'
 
 feature 'playing the game of life' do
-  scenario 'start a new game' do
+  scenario 'generate a custom grid', js: true do
     visit '/'
 
-    expect(page).to have_content "Game of Life"
+    fill_in "Rows", with: 1
+    fill_in "Columns", with: 1
 
-    fill_in "Grid Size", with: 10
-    fill_in "Live Cells", with: 5
-    click_button "New Game"
+    within "span.cell" do
+      expect(page).to have_content "0"
+    end
+
+    page.find("span.cell", :text => "0").click
+
+    within "span.cell" do
+      expect(page).to have_content "1"
+    end
+  end
+
+  scenario 'start a new game', js: true do
+    visit '/'
+
+    fill_in "Rows", with: 2
+    fill_in "Columns", with: 2
+
+    page.first("span.cell", :text => "0").click
+
+    click_button "Start Game"
+
+    expect(page).to_not have_content "Rows"
+    expect(page).to_not have_content "Columns"
 
     expect(page).to have_content "0"
     expect(page).to have_content "1"
   end
 
-  scenario 'starting a game with an invalid grid size' do
-    visit '/'
-
-    fill_in "Grid Size", with: 99
-    fill_in "Live Cells", with: 1
-    click_button "New Game"
-
-    expect(page).to have_content "Grid size must be divisible by ten"
-  end
-
-  scenario 'starting a game with an invalid live cell count' do
-    visit '/'
-
-    fill_in "Grid Size", with: 10
-    fill_in "Live Cells", with: 11
-    click_button "New Game"
-
-    expect(page).to have_content "Live cells must be less than grid size"
-  end
-
-  scenario 'advance a game' do
+  scenario 'advance a game', js: true do
     visit '/'
 
     expect(page).to have_content "Game of Life"
 
-    fill_in "Grid Size", with: 10
-    fill_in "Live Cells", with: 1
-    click_button "New Game"
+    fill_in "Rows", with: 1
+    fill_in "Columns", with: 1
+
+    page.first("span.cell", :text => "0").click
+
+    click_button "Start Game"
 
     click_button "Advance"
 

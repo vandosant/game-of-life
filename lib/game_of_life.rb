@@ -1,29 +1,16 @@
 require_relative 'grid_generator'
 
 class GameOfLife
-  attr_reader :cells
+  attr_reader :cells, :rows, :columns
 
-  def initialize(grid_size, starting_live_cells)
-    @grid_size = grid_size
-    @starting_live_cells = starting_live_cells
-    @cells = []
-    @grid = []
-  end
-
-  def generate_cells
-    @starting_live_cells.times do
-      @cells << 1
-    end
-
-    (@grid_size - @starting_live_cells).times do
-      @cells << 0
-    end
-
-    @cells.shuffle!
+  def initialize(cells, rows, columns)
+    @cells = cells
+    @rows = rows
+    @columns = columns
   end
 
   def advance
-    @grid = get_grid
+    @grid = GridGenerator.map(@cells, @rows, @columns)
     x_max = @grid.map { |coordinate| coordinate[0] }.sort.last
     y_max = @grid.map { |coordinate| coordinate[1] }.sort.last
     dead_cell_indexes = []
@@ -50,7 +37,6 @@ class GameOfLife
         live_neighbor_count += 1
       end
 
-
       if live_neighbor_count < 2 || live_neighbor_count > 3
         dead_cell_indexes << index
       elsif live_neighbor_count == 3
@@ -68,10 +54,6 @@ class GameOfLife
   end
 
   private
-
-  def get_grid
-    GridGenerator.map(@cells)
-  end
 
   def left_neighbor_present?(x_coordinate)
     x_coordinate != 0

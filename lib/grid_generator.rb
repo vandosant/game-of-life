@@ -1,13 +1,13 @@
 class GridGenerator
-  def self.map(items, items_per_row=10)
+  def self.map(items, rows, columns)
     result = []
     x_count = 0
     y_count = 0
 
-    while result.length < items.length
+    items.length.times do
       result << [x_count, y_count]
       x_count += 1
-      if items_per_row != nil && x_count >= items_per_row
+      if x_count >= columns
         x_count = 0
         y_count += 1
       end

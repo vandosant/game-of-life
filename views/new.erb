@@ -1,0 +1,21 @@
+<div class="cell-container">
+  <% grid.each_with_index do |coordinate, index| %>
+    <% if coordinate[1] > grid[index-1][1] %>
+      <br/>
+    <% end %>
+    <div class="cell cell-<%= game.cells[index] %>">
+      <div class="v-align">
+        <div class="cell-content">
+          <%= game.cells[index] %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<form action="/new" method="post">
+  <input type="hidden" name="advance" value="true">
+  <input type="submit" value="Advance" class="submit-button">
+</form>
+
+<div id="container"></div>

@@ -1,7 +1,8 @@
 body {
-    width: 100%;
     color: #293B47;
-    font-size: .8em;
+    font: .8em sans-serif;
+    border: 5px solid #00ADA9;
+    padding: 10px;
 }
 
 .content-container {
@@ -14,14 +15,6 @@ body {
     text-align: center;
     display: block;
     margin: 0 auto;
-}
-
-.cell {
-    box-sizing: border-box;
-    display: inline-block;
-    width: 2em;
-    height: 2em;
-    border: 1px solid black;
 }
 
 .cell-content {
@@ -58,4 +51,22 @@ form input {
 
 .errors {
     color: #e63664;
+}
+
+.cell {
+    display: inline-block;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    width: 30px;
+    margin: 2px;
+    background: #eee;
+    cursor: pointer;
+
+    -webkit-transition: background .8s; /* For Safari 3.1 to 6.0 */
+    transition: background .8s;
+}
+
+.selected {
+    background: #5F7A87;
 }
