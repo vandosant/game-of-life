@@ -14,7 +14,7 @@ body {
     width: 100%;
     text-align: center;
     display: block;
-    margin: 0 auto;
+    margin: 0 auto .8em auto;
 }
 
 .cell-content {
@@ -69,4 +69,8 @@ form input {
 
 .selected {
     background: #5F7A87;
+}
+
+.center {
+    text-align: center;
 }
