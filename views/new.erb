@@ -2,7 +2,7 @@
   <% game.current_matrix.each do |row| %>
     <div class="row">
       <% row.each do |column| %>
-        <% if column == "1" %>
+        <% if column == 1 %>
           <span class="cell selected"><%= column %></span>
         <% else %>
           <span class="cell"><%= column %></span>
