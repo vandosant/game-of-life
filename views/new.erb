@@ -12,9 +12,29 @@
   <% end %>
 </div>
 
+<script>
+
+  $(document).ready(function() {
+    $(document).on("click", ".submit-button", function() {
+      event.preventDefault();
+      ga.start();
+    });
+  });
+
+  var render = new Render(".cell-container");
+
+  var ga = new GameAdvancer();
+  ga.init({
+    onUpdatedBoard : function(gameData) {
+      render.render(gameData);
+    }
+  });
+
+</script>
+
 <div class="center">
   <form action="/new" method="post">
     <input type="hidden" name="advance" value="true">
-    <input type="submit" value="Advance" class="submit-button">
+    <input type="submit" value="Start" class="submit-button">
   </form>
 </div>

@@ -35,7 +35,7 @@ feature 'playing the game of life' do
     expect(page).to have_content "1"
   end
 
-  scenario 'advance a game', js: true do
+  scenario 'the game automatically advances after starting', js: true do
     visit '/'
 
     expect(page).to have_content "Game of Life"
@@ -47,7 +47,11 @@ feature 'playing the game of life' do
 
     click_button "Start Game"
 
-    click_button "Advance"
+    expect(page).to have_content "1"
+
+    click_button "Start"
+
+    sleep(1)
 
     expect(page).to have_content "0"
     expect(page).to_not have_content "1"

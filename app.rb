@@ -1,5 +1,6 @@
 require 'sinatra/base'
 require_relative 'lib/game_of_life'
+require 'json'
 
 class App < Sinatra::Base
   set :game, GameOfLife.new([], 0, 0)
@@ -22,6 +23,12 @@ class App < Sinatra::Base
 
   post '/new' do
     settings.game.advance
-    redirect '/new'
+    redirect '/update'
   end
+
+  get '/update' do
+    content_type :json
+    settings.game.current_matrix.to_json
+  end
+
 end
