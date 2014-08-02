@@ -1,7 +1,5 @@
 [![Code Climate](https://codeclimate.com/github/vandosant/game-of-life.png)](https://codeclimate.com/github/vandosant/game-of-life)
-#Game Of Life
-
-##Description:  
+#Game Of Life  
 My take on [Conway's Game of Life](http://en.wikipedia.org/wiki/Conway's_Game_of_Life#Self-replication). Built in Sinatra and written in Ruby and JavaScript.
 
 ##Setup:
